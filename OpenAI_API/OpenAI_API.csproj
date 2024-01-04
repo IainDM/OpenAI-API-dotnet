@@ -35,6 +35,8 @@
 
 	<PropertyGroup>
 		<PackageIcon>nuget_logo.png</PackageIcon>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>C:\Users\Iain\source\repos\IainDM\model-maker\ModelMaker.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 
 	<ItemGroup>
