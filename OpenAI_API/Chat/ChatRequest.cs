@@ -17,6 +17,12 @@ namespace OpenAI_API.Chat
 	public class ChatRequest
 	{
 		/// <summary>
+		/// the list of function descriptions
+		/// </summary>
+		[JsonProperty("functions")]
+		public string Functions { get; set; }
+
+		/// <summary>
 		/// The model to use for this request
 		/// </summary>
 		[JsonProperty("model")]
@@ -175,6 +181,7 @@ namespace OpenAI_API.Chat
 			this.FrequencyPenalty = basedOn.FrequencyPenalty;
 			this.PresencePenalty = basedOn.PresencePenalty;
 			this.LogitBias = basedOn.LogitBias;
+			this.Functions = basedOn.Functions;
 		}
 
 		/// <summary>
