@@ -36,7 +36,9 @@ namespace OpenAI_API.Chat
 		/// <returns>A <see cref="Conversation"/> which encapsulates a back and forth chat between a user and an assistant.</returns>
 		public Conversation CreateConversation(ChatRequest defaultChatRequestArgs = null)
 		{
-			return new Conversation(this, defaultChatRequestArgs: defaultChatRequestArgs ?? DefaultChatRequestArgs);
+			string funDesc =
+				@"[{""name"": ""get_component_examples"",""description"": ""get examples of similar parts of models that can inform the current modelling requirement"",""parameters"": {""type"": ""object"",""properties"": {""requirement"": {""type"": ""string"",""description"": ""what the user wants you to create a model or formulas for""}},""required"": [""requirement""],}}]";
+			return new Conversation(this, null, defaultChatRequestArgs ?? DefaultChatRequestArgs, funDesc);
 		}
 
 		#region Non-streaming

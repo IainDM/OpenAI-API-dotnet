@@ -1,20 +1,14 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using OpenAI_API.Models;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace OpenAI_API.Chat
 {
-	/// <summary>
-	/// A request to the Chat API. This is similar, but not exactly the same as the <see cref="Completions.CompletionRequest"/>
-	/// Based on the <see href="https://platform.openai.com/docs/api-reference/chat">OpenAI API docs</see>
-	/// </summary>
-	public class ChatRequest
+    /// <summary>
+    /// A request to the Chat API. This is similar, but not exactly the same as the <see cref="Completions.CompletionRequest"/>
+    /// Based on the <see href="https://platform.openai.com/docs/api-reference/chat">OpenAI API docs</see>
+    /// </summary>
+    public class ChatRequest
 	{
 		/// <summary>
 		/// the list of function descriptions

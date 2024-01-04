@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
 namespace OpenAI_API.Chat
 {
-	/// <summary>
-	/// Represents on ongoing chat with back-and-forth interactions between the user and the chatbot.  This is the simplest way to interact with the ChatGPT API, rather than manually using the ChatEnpoint methods.  You do lose some flexibility though.
-	/// </summary>
-	public class Conversation
+
+    /// <summary>
+    /// Represents on ongoing chat with back-and-forth interactions between the user and the chatbot.  This is the simplest way to interact with the ChatGPT API, rather than manually using the ChatEnpoint methods.  You do lose some flexibility though.
+    /// </summary>
+    public class Conversation
 	{
 		/// <summary>
 		/// An internal reference to the API endpoint, needed for API requests
@@ -51,7 +51,7 @@ namespace OpenAI_API.Chat
 		/// <param name="endpoint">A reference to the API endpoint, needed for API requests.  Generally should be <see cref="OpenAIAPI.Chat"/>.</param>
 		/// <param name="model">Optionally specify the model to use for ChatGPT requests.  If not specified, used <paramref name="defaultChatRequestArgs"/>.Model or falls back to <see cref="OpenAI_API.Models.Model.DefaultChatModel"/></param>
 		/// <param name="defaultChatRequestArgs">Allows setting the parameters to use when calling the ChatGPT API.  Can be useful for setting temperature, presence_penalty, and more.  See <see href="https://platform.openai.com/docs/api-reference/chat/create">OpenAI documentation for a list of possible parameters to tweak.</see></param>
-		public Conversation(ChatEndpoint endpoint, OpenAI_API.Models.Model model = null, ChatRequest defaultChatRequestArgs = null)
+		public Conversation(ChatEndpoint endpoint, OpenAI_API.Models.Model model = null, ChatRequest defaultChatRequestArgs = null,string functionDescription="")
 		{
 			RequestParameters = new ChatRequest(defaultChatRequestArgs);
 			if (model != null)
@@ -63,6 +63,7 @@ namespace OpenAI_API.Chat
 			_endpoint = endpoint;
 			RequestParameters.NumChoicesPerMessage = 1;
 			RequestParameters.Stream = false;
+			if(functionDescription!= null) { RequestParameters.Functions = functionDescription; }
 		}
 
 		/// <summary>
