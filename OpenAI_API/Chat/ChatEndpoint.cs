@@ -36,9 +36,16 @@ namespace OpenAI_API.Chat
 		/// <returns>A <see cref="Conversation"/> which encapsulates a back and forth chat between a user and an assistant.</returns>
 		public Conversation CreateConversation(ChatRequest defaultChatRequestArgs = null)
 		{
-			string funDesc =
-				@"[{""name"": ""get_component_examples"",""description"": ""get examples of similar parts of models that can inform the current modelling requirement"",""parameters"": {""type"": ""object"",""properties"": {""requirement"": {""type"": ""string"",""description"": ""what the user wants you to create a model or formulas for""}},""required"": [""requirement""],}}]";
-			return new Conversation(this, null, defaultChatRequestArgs ?? DefaultChatRequestArgs, funDesc);
+            var fns = new FunctionDefinition[2];
+            
+			var fnDescBuilder = new FunctionDefinitionBuilder("getComponentExamples", "get examples of similar parts of models that can inform the current modelling requirement");
+            fnDescBuilder.AddParameter("userRequirement",new PropertyDefinition() { Description = "What the user wants you to write formulas for", Type = "string" }, true);
+			fns[0]=fnDescBuilder.Build();
+
+			fnDescBuilder = new FunctionDefinitionBuilder("getModel", "load the current model from Openbox"); //has no parameters
+			fns[1]=fnDescBuilder.Build();
+
+			return new Conversation(this, null, defaultChatRequestArgs ?? DefaultChatRequestArgs, fns);
 		}
 
 		#region Non-streaming

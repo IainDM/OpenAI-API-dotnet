@@ -30,45 +30,45 @@ public class PropertyDefinition
     ///     Optional. List of "function arguments", as a dictionary that maps from argument name
     ///     to an object that describes the type, maybe possible enum values, and so on.
     /// </summary>
-    [JsonProperty("properties")]
+    [JsonProperty("properties", NullValueHandling = NullValueHandling.Ignore)]
     public IDictionary<string, PropertyDefinition>? Properties { get; set; }
 
     /// <summary>
     ///     Optional. List of "function arguments" which are required.
     /// </summary>
-    [JsonProperty("required")]
+    [JsonProperty("required", NullValueHandling = NullValueHandling.Ignore)]
     public IList<string>? Required { get; set; }
 
     /// <summary>
     ///     Optional. Whether additional properties are allowed. Default value is true.
     /// </summary>
-    [JsonProperty("additionalProperties")]
+    [JsonIgnore]
     public bool? AdditionalProperties { get; set; }
 
     /// <summary>
     ///     Optional. Argument description.
     /// </summary>
-    [JsonProperty("description")]
+    [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
     public string? Description { get; set; }
 
     /// <summary>
     ///     Optional. List of allowed values for this argument.
     /// </summary>
-    [JsonProperty("enum")]
+    [JsonIgnore]
     public IList<string>? Enum { get; set; }
 
     /// <summary>
     ///     The number of properties on an object can be restricted using the minProperties and maxProperties keywords. Each of
     ///     these must be a non-negative integer.
     /// </summary>
-    [JsonProperty("minProperties")]
+    [JsonIgnore]
     public int? MinProperties { get; set; }
 
     /// <summary>
     ///     The number of properties on an object can be restricted using the minProperties and maxProperties keywords. Each of
     ///     these must be a non-negative integer.
     /// </summary>
-    [JsonProperty("maxProperties")]
+    [JsonIgnore]
     public int? MaxProperties { get; set; }
 
     /// <summary>
@@ -76,7 +76,7 @@ public class PropertyDefinition
     ///     If type is not "array", this should be null.
     ///     For more details, see https://json-schema.org/understanding-json-schema/reference/array.html
     /// </summary>
-    [JsonProperty("items")]
+    [JsonProperty("items", NullValueHandling = NullValueHandling.Ignore)]
     public PropertyDefinition? Items { get; set; }
 
     public static PropertyDefinition DefineArray(PropertyDefinition? arrayItems = null)
