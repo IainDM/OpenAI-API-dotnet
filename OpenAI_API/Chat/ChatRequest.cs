@@ -151,12 +151,16 @@ namespace OpenAI_API.Chat
 		[JsonProperty("seed", DefaultValueHandling=DefaultValueHandling.Ignore)]
 		public int? Seed { get; set; }
 
-		/// <summary>
-		/// Creates a new, empty <see cref="ChatRequest"/>
-		/// </summary>
-		public ChatRequest()
+		[JsonIgnore]
+        public bool IncludeFunctions { get=>false;}
+
+        /// <summary>
+        /// Creates a new, empty <see cref="ChatRequest"/>
+        /// </summary>
+        public ChatRequest()
 		{ }
 
+		
 		/// <summary>
 		/// Create a new chat request using the data from the input chat request.
 		/// </summary>
@@ -175,7 +179,7 @@ namespace OpenAI_API.Chat
 			this.FrequencyPenalty = basedOn.FrequencyPenalty;
 			this.PresencePenalty = basedOn.PresencePenalty;
 			this.LogitBias = basedOn.LogitBias;
-			this.Functions = basedOn.Functions;
+			if (IncludeFunctions) { this.Functions = basedOn.Functions; }
 		}
 
 		/// <summary>

@@ -63,7 +63,7 @@ namespace OpenAI_API.Chat
 			_endpoint = endpoint;
 			RequestParameters.NumChoicesPerMessage = 1;
 			RequestParameters.Stream = false;
-			if(functionDescription!= null) { RequestParameters.Functions =JsonConvert.SerializeObject(functionDescription); }
+			if(functionDescription!= null && RequestParameters.IncludeFunctions) { RequestParameters.Functions =JsonConvert.SerializeObject(functionDescription); }
 		}
 
 		/// <summary>
